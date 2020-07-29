@@ -47,6 +47,25 @@ iex(32)> flush
 :ok
 ```
 
+### Example with GenServer
+
+```elixir
+iex(1)> {:ok, pid} = UrlShortener.start_link(:foo)
+{:ok, #PID<0.109.0>}
+
+iex(2)> UrlShortener.shorten(:foo, "https://google.com")
+"99999ebcfdb78df077ad2727fd00969f"
+
+iex(3)> UrlShortener.get(:foo, "99999ebcfdb78df077ad2727fd00969f")
+"https://google.com"
+
+iex(4)> UrlShortener.stop(:foo)
+:ok
+
+iex(5)> Process.alive?(pid)
+false
+```
+
 ## Credits
 
 [OTP in Elixir](https://ieftimov.com/post/otp-elixir-genserver-build-own-url-shortener/)

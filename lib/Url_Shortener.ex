@@ -1,5 +1,23 @@
 defmodule UrlShortener do
-  @moduledoc false
+  @moduledoc """
+  Reimplementing URLShortener, using GenServer
+
+  ##Example 
+        iex(1)> {:ok, pid} = URLShortener.start_link(:foo)
+        {:ok, #PID<0.109.0>}
+
+        iex(2)> URLShortener.shorten(:foo, "https://google.com")
+        "99999ebcfdb78df077ad2727fd00969f"
+
+        iex(3)> URLShortener.get(:foo, "99999ebcfdb78df077ad2727fd00969f")
+        "https://google.com"
+
+        iex(4)> URLShortener.stop(:foo)
+        :ok
+
+        iex(5)> Process.alive?(pid)
+        false
+  """
 
   use GenServer
 
